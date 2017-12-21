@@ -13,26 +13,50 @@
                 float: left;
                 border: 1px #000 solid;
             }
+            #button {
+        background-color: #4CAF50;
+        color: white;
+        padding: 14px 20px;
+        margin: 8px 0;
+        border: none;
+        cursor: pointer;
+        width: 100%;
+}
+input{
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+#users{
+background-color: #c2f1ee94;
+}
+#button:hover {
+    opacity: 0.8;
+}
         </style>
     </head>
     <body>
         <div id="nickWrap">
-            <p>Enter a Username:</p>
+           <center><lable><b>Enter a Username:</b></lable></center>
             <p id="nickError"></p>
             <form  id="setNick">
                 <input size="35" id="nickname"/>
-                <input type="submit"/>
+                <input type="submit" id="button"/>
             </form>
         </div>
         <div id="contentWrap">
             <div id="chatWrap">
-                <div id="chat"></div>
-                <form id="send-message">
+                <div id="chat" style="background-color:#c0eac0;"></div>
+                <form id="send-message" style="background-color:#c0eac0;">
                     <input size="35" id="message"/>
                     <input type="submit"/>
                 </form>
             </div>
-            <div id="users"></div>
+            <h3><center>All Connnected Users</center> </h3>
+           <center> <div id="users"></div></center>
         </div>
         <script src="https://code.jquery.com/jquery-latest.min.js"></script>
         <script src="/socket.io/socket.io.js"></script>
@@ -54,7 +78,7 @@
                         $('#nickWrap').hide();
                         $('#contentWrap').show();
                     }else{
-                        $nickError.html('That username is already taken! try again');
+                        $nickError.html('<b style="color:red;"><div style="background-color:#c0eac0;">That username is already taken! try again<div><b>');
                     }
                 });
                 $nickBox.val('');
@@ -73,7 +97,7 @@
             });
             
             socket.on('new message',function(data){
-                $chat.append('<b style=color:red;>'+data.nick+' : </b>'+data.msg+"<br/>");
+                $chat.append('<lable><b style=color:red;>'+data.nick+' : </b>'+data.msg+"</lable><br/>");
             });
         });
         </script>
